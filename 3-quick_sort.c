@@ -2,28 +2,29 @@
 
 /**
  * Lumoto_partition - algorithm (using Lomuto partition scheme) that reorders
- * the @array; all elements with values less than the pivot come before it,
- * while elements with values greater than or equal to the pivot come after it.
+ * the @array; all elements with values less than the pivot (last element
+ * in the sub-lists of the @array) come before it, while all elements with
+ * values greater than or equal to the pivot come after it.
  * After this partitioning, the pivot is in its final position
  *
  * @array: pointer to the array to reorder
  * @size: size of the @array
- * @left: index of the element at the top left of the @array
- * @right: index of the element at the top right of the @array (it's pivot)
+ * @top_left: index of the element at the top left of the @array
+ * @top_right: index of the element at the top right of the @array (it's pivot)
  *
  * Return: index of the pivot after swap
  */
-int Lumoto_partition(int *array, size_t size, size_t left, size_t right)
+int Lumoto_partition(int *array, size_t size, int left, int right)
 {
 	int *pivot = &array[right - 1];
 	int current;
-	size_t i;
+	int i;
 
 	for (i = left; i < right; i++)
 	{
 		if (array[i] < *pivot)
 		{
-			if (array[i] != array[left])
+			if (i != left)
 			{
 				/** swap */
 				current = array[i];
@@ -52,12 +53,12 @@ int Lumoto_partition(int *array, size_t size, size_t left, size_t right)
  *
  * @array: pointer to the array to reorder
  * @size: size of the @array
- * @left: index of the element at the top left of the @array
- * @right: index of the element at the top right of the @array (it's pivot)
+ * @top_left: index of the element at the top left of the @array
+ * @top_right: index of the element at the top right of the @array (it's pivot)
  */
-void Lumoto(int *array, size_t size, size_t left, size_t right)
+void Lumoto(int *array, size_t size, int left, int right)
 {
-	size_t pivot;
+	int pivot;
 
 	if (left < right)
 	{
