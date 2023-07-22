@@ -15,7 +15,7 @@ int nodes_number(listint_t **list)
 	tmp = *list;
 	if (tmp)
 		count++;
-	while (tmp = tmp->next)
+	while ((tmp = tmp->next))
 		count++;
 	return (count);
 }
