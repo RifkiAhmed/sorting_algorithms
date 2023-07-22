@@ -1,7 +1,7 @@
 #include "sort.h"
 
 /**
- * Lomuto - algorithm (using Lomuto partition scheme) that reorders
+ * partition - algorithm (using Lomuto partition scheme) that reorders
  * the @array; all elements with values less than the pivot (last element
  * in the sub-lists of the @array) come before it, while all elements with
  * values greater than or equal to the pivot come after it.
@@ -14,7 +14,7 @@
  *
  * Return: index of the pivot after swap
  */
-int Lomuto(int *array, size_t size, size_t top_left, size_t top_right)
+int partition(int *array, size_t size, size_t top_left, size_t top_right)
 {
 	int *pivot = &array[top_right - 1];
 	int current;
@@ -47,7 +47,7 @@ int Lomuto(int *array, size_t size, size_t top_left, size_t top_right)
 }
 
 /**
- * Quicksort - algorithm (using Lomuto partition scheme) that sorts recursively
+ * Lumoto - algorithm (using Lomuto partition scheme) that sorts recursively
  * the sub-list of lesser elements and the sub-list of greater elements in
  * the @array
  *
@@ -56,15 +56,15 @@ int Lomuto(int *array, size_t size, size_t top_left, size_t top_right)
  * @top_left: index of the element at the top left of the @array
  * @top_right: index of the element at the top right of the @array (it's pivot)
  */
-void Quicksort(int *array, size_t size, size_t top_left, size_t top_right)
+void Lumoto(int *array, size_t size, size_t top_left, size_t top_right)
 {
 	size_t pivot;
 
 	if (top_left < top_right)
 	{
 		pivot = partition(array, size, top_left, top_right);
-		Quicksort(array, size,  top_left, pivot);
-		Quicksort(array, size, pivot + 1, top_right);
+		Lumoto(array, size,  top_left, pivot);
+		Lumoto(array, size, pivot + 1, top_right);
 	}
 }
 
@@ -79,5 +79,5 @@ void quick_sort(int *array, size_t size)
 {
 	size_t n = size;
 
-	Quicksort(array, size, 0, n);
+	Lumoto(array, size, 0, n);
 }
