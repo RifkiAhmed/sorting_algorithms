@@ -1,48 +1,52 @@
 #include "sort.h"
 
 /**
+ * swap - swap values of two elements in @array
+ *
+ * @array: pointer to array of integers
+ * @size: size of the @array
+ * @a: pointer to 1st element
+ * @b: pointer to 2d element
+ */
+void swap(int *array, size_t size, int *a, int *b)
+{
+	int c;
+
+	if (*a != *b)
+	{
+		c = *a;
+		*a = *b;
+		*b = c;
+
+		print_array(array, size);
+	}
+}
+
+/**
  * Lumoto_partition - algorithm (using Lomuto partition scheme) that reorders
- * the @array; all elements with values less than the pivot (last element
- * in the sub-lists of the @array) come before it, while all elements with
- * values greater than or equal to the pivot come after it.
+ * the @array; all elements with values less than the pivot come before it,
+ * while elements with values greater than or equal to the pivot come after it.
  * After this partitioning, the pivot is in its final position
  *
  * @array: pointer to the array to reorder
  * @size: size of the @array
  * @left: index of the element at the top left of the @array
- * @right: index of the element at the top right of the @array (it's pivot)
+ * @right: index of the element at the top right of the @array (pivot)
  *
  * Return: index of the pivot after swap
  */
 int Lumoto_partition(int *array, size_t size, int left, int right)
 {
 	int *pivot = &array[right - 1];
-	int current;
-	int i;
+	int j;
 
-	for (i = left; i < right; i++)
-	{
-		if (array[i] < *pivot)
+	for (j = left; j < right; j++)
+		if (array[j] < *pivot)
 		{
-			if (i != left)
-			{
-				/** swap */
-				current = array[i];
-				array[i] = array[left];
-				array[left] = current;
-				print_array(array, size);
-			}
-			left += 1;
+			swap(array, size, &array[j], &array[left]);
+			left++;
 		}
-	}
-	if (left != right - 1)
-	{
-		/** swap */
-		current = *pivot;
-		*pivot = array[left];
-		array[left] = current;
-		print_array(array, size);
-	}
+	swap(array, size, &array[left], pivot);
 	return (left);
 }
 
