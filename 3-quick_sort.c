@@ -1,9 +1,10 @@
 #include "sort.h"
 
-
 /**
  * Lumoto_partition - algorithm (using Lomuto partition scheme) that reorders
- * the @array
+ * the @array; all elements with values less than the pivot come before it,
+ * while elements with values greater than or equal to the pivot come after it.
+ * After this partitioning, the pivot is in its final position
  *
  * @array: pointer to the array to reorder
  * @size: size of the @array
@@ -22,7 +23,7 @@ int Lumoto_partition(int *array, size_t size, size_t left, size_t right)
 	{
 		if (array[i] < *pivot)
 		{
-			if (left != i)
+			if (array[i] != array[left])
 			{
 				/** swap */
 				current = array[i];
