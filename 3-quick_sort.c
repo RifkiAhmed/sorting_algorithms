@@ -9,8 +9,8 @@
  *
  * @array: pointer to the array to reorder
  * @size: size of the @array
- * @top_left: index of the element at the top left of the @array
- * @top_right: index of the element at the top right of the @array (it's pivot)
+ * @left: index of the element at the top left of the @array
+ * @right: index of the element at the top right of the @array (it's pivot)
  *
  * Return: index of the pivot after swap
  */
@@ -53,8 +53,8 @@ int Lumoto_partition(int *array, size_t size, int left, int right)
  *
  * @array: pointer to the array to reorder
  * @size: size of the @array
- * @top_left: index of the element at the top left of the @array
- * @top_right: index of the element at the top right of the @array (it's pivot)
+ * @left: index of the element at the top left of the @array
+ * @right: index of the element at the top right of the @array (it's pivot)
  */
 void Lumoto(int *array, size_t size, int left, int right)
 {
