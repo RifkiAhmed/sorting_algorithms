@@ -14,36 +14,36 @@
  *
  * Return: index of the pivot after swap
  */
-int Lumoto_partition(int *array, size_t size, size_t top_left, size_t top_right)
+int Lumoto_partition(int *array, size_t size, size_t left, size_t right)
 {
-	int *pivot = &array[top_right - 1];
+	int *pivot = &array[right - 1];
 	int current;
 	size_t i;
 
-	for (i = top_left; i < top_right; i++)
+	for (i = left; i < right; i++)
 	{
 		if (array[i] < *pivot)
 		{
-			if (i != top_left)
+			if (i != left)
 			{
 				/** swap */
 				current = array[i];
-				array[i] = array[top_left];
-				array = current;
+				array[i] = array[left];
+				array[left] = current;
 				print_array(array, size);
 			}
-			top_left += 1;
+			left += 1;
 		}
 	}
-	if (top_left != top_right - 1)
+	if (left != right - 1)
 	{
 		/** swap */
 		current = *pivot;
-		*pivot = array[top_left];
-		array[top_left] = current;
+		*pivot = array[left];
+		array[left] = current;
 		print_array(array, size);
 	}
-	return (top_left);
+	return (left);
 }
 
 /**
@@ -56,15 +56,15 @@ int Lumoto_partition(int *array, size_t size, size_t top_left, size_t top_right)
  * @top_left: index of the element at the top left of the @array
  * @top_right: index of the element at the top right of the @array (it's pivot)
  */
-void Lumoto(int *array, size_t size, size_t top_left, size_t top_right)
+void Lumoto(int *array, size_t size, size_t left, size_t right)
 {
 	size_t pivot;
 
-	if (top_left < top_right)
+	if (left < right)
 	{
-		pivot = partition(array, size, top_left, top_right);
-		Lumoto(array, size,  top_left, pivot);
-		Lumoto(array, size, pivot + 1, top_right);
+		pivot = Lumoto_partition(array, size, left, right);
+		Lumoto(array, size,  left, pivot);
+		Lumoto(array, size, pivot + 1, right);
 	}
 }
 
