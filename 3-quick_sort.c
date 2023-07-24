@@ -37,7 +37,7 @@ void swap(int *array, size_t size, int *a, int *b)
  */
 int Lumoto_partition(int *array, size_t size, int left, int right)
 {
-	int *pivot = &array[right - 1];
+	int *pivot = &array[right];
 	int j;
 
 	for (j = left; j < right; j++)
@@ -67,7 +67,7 @@ void Lumoto(int *array, size_t size, int left, int right)
 	if (left < right)
 	{
 		pivot = Lumoto_partition(array, size, left, right);
-		Lumoto(array, size,  left, pivot);
+		Lumoto(array, size,  left, pivot - 1);
 		Lumoto(array, size, pivot + 1, right);
 	}
 }
@@ -82,5 +82,5 @@ void Lumoto(int *array, size_t size, int left, int right)
 void quick_sort(int *array, size_t size)
 {
 	if (array != NULL && size >= 2)
-		Lumoto(array, size, 0, size);
+		Lumoto(array, size, 0, size - 1);
 }
