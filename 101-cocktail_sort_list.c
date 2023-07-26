@@ -31,7 +31,7 @@ void cocktail_sort_list(listint_t **list)
 	listint_t *current = *list;
 	char moved, swapped;
 
-	if (!list || !(*list)->next)
+	if (!list || !(*list) || !(*list)->next)
 		return;
 
 	do {
